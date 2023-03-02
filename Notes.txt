@@ -1,0 +1,55 @@
+Pong:
+
+Single Player with an AI that always has the paddle moving in the right direction
+
+
+ECS Architecture:
+Entities, Components, Systems
+
+Entities are made up of components, and systems operate on entities or components.
+
+
+EX:
+
+Player (Entity) has a "Physics Rigid Body" component attached.
+
+The "physics" system queries all entities with the "Physics Rigid Body" component attached, 
+and does a physics update on them using physics algorithms
+
+
+A plugin is a bundle of systems, entities, and components, that are added to the application?
+________________________
+
+
+What do I need?
+
+- paddle
+- ball
+- wall physics
+- paddle to ball Physics
+- input to move the paddle
+- AI to move the enemy paddle
+
+collision detection: ball and paddles have the same collision detection with the walls
+but not with each other the collision of the ball onto the paddle is the same as onto the walls. except that the paddle will have some velocity
+
+Entities:
+ball
+paddle
+player
+score
+
+components:
+position
+velocity
+acceleration?
+
+mass
+physics_reaction (can be moved by physics engine)
+physics_cause (can move other objects but is immune to any physics effects on itself)
+
+systems:
+physics system that resolves collisions by updating velocities
+input system: operates on the player entity
+
+
