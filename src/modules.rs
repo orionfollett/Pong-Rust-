@@ -1,2 +1,3 @@
+pub mod ball;
 pub mod display;
-pub mod player;
+pub mod paddle;

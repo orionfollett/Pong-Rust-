@@ -1,0 +1,5 @@
+{
+    "editor.formatOnSave": true,
+    //CTRL + ALt enables hints
+    "editor.inlayHints.enabled": "offUnlessPressed"
+}

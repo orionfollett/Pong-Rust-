@@ -43,13 +43,13 @@ components:
 position
 velocity
 acceleration?
-
+display/sprite component
 mass
 physics_reaction (can be moved by physics engine)
 physics_cause (can move other objects but is immune to any physics effects on itself)
 
 systems:
-physics system that resolves collisions by updating velocities
+physics system that resolves collisions by updating velocities on anything with physics_ components
 input system: operates on the player entity
-
+draw system that draws everything with a display component
 
