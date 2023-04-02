@@ -8,9 +8,11 @@ use bevy::{
 };
 use bevy_rapier2d::prelude::{
     Collider, ExternalImpulse, Friction, GravityScale, LockedAxes, Restitution, RigidBody, Sensor,
+    Velocity,
 };
 
-const BALL_RADIUS: f32 = 20.0;
+pub const BALL_RADIUS: f32 = 20.0;
+pub const BALL_SPAWN_VELOCITY: Vec2 = Vec2::new(500.0, 200.0);
 
 pub struct BallPlugin;
 
@@ -43,8 +45,12 @@ fn setup_ball(
             ..default()
         })
         .insert(GravityScale(0.0))
+        .insert(Velocity {
+            linvel: BALL_SPAWN_VELOCITY,
+            angvel: 0.0,
+        })
         .insert(ExternalImpulse {
-            impulse: Vec2::new(50., 20.),
+            impulse: Vec2::new(0.0, 0.0),
             torque_impulse: 0.0,
         })
         .insert(LockedAxes::ROTATION_LOCKED)
