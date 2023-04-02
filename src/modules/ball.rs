@@ -7,8 +7,7 @@ use bevy::{
     transform::TransformBundle,
 };
 use bevy_rapier2d::prelude::{
-    Collider, ExternalImpulse, Friction, GravityScale, LockedAxes, MassProperties, Restitution,
-    RigidBody,
+    Collider, ExternalImpulse, Friction, GravityScale, LockedAxes, Restitution, RigidBody, Sensor,
 };
 
 const BALL_RADIUS: f32 = 20.0;
@@ -35,7 +34,7 @@ fn setup_ball(
         .spawn(RigidBody::Dynamic)
         .insert(Collider::ball(BALL_RADIUS))
         .insert(Friction::coefficient(0.0))
-        .insert(Restitution::coefficient(2.0))
+        .insert(Restitution::coefficient(1.0))
         .insert(TransformBundle::from(Transform::from_xyz(0.0, 0.0, 0.0)))
         .insert(MaterialMesh2dBundle {
             mesh: meshes.add(shape::Circle::new(BALL_RADIUS).into()).into(),
@@ -57,24 +56,29 @@ fn setup_boundaries(mut commands: Commands) {
     commands
         .spawn(Collider::cuboid(500.0, 50.0))
         .insert(Friction::coefficient(0.0))
+        .insert(Restitution::coefficient(1.0))
         .insert(TransformBundle::from(Transform::from_xyz(0.0, -275.0, 0.0)));
 
     //ceiling
     commands
         .spawn(Collider::cuboid(500.0, 50.0))
         .insert(Friction::coefficient(0.0))
+        .insert(Restitution::coefficient(1.0))
         .insert(TransformBundle::from(Transform::from_xyz(0.0, 275.0, 0.0)));
 
     //left wall
     commands
         .spawn(Collider::cuboid(50.0, 500.0))
         .insert(Friction::coefficient(0.0))
-        .insert(TransformBundle::from(Transform::from_xyz(-275.0, 0.0, 0.0)));
+        .insert(Restitution::coefficient(1.0))
+        .insert(TransformBundle::from(Transform::from_xyz(-275.0, 0.0, 0.0)))
+        .insert(Sensor);
 
     //right wall
     commands
         .spawn(Collider::cuboid(50.0, 500.0))
         .insert(Friction::coefficient(0.0))
+        .insert(Restitution::coefficient(1.0))
         .insert(TransformBundle::from(Transform::from_xyz(275.0, 0.0, 0.0)));
 }
 

@@ -7,6 +7,8 @@ use bevy_rapier2d::{
 use modules::{
     ball::BallPlugin,
     display::{DisplayPlugin, SCREEN_HEIGHT, SCREEN_WIDTH},
+    game_state::GameStatePlugin,
+    input_handler::InputHandlerPlugin,
     paddle::PaddlePlugin,
 };
 
@@ -23,6 +25,8 @@ fn main() {
         .add_plugin(DisplayPlugin)
         .add_plugin(BallPlugin)
         .add_plugin(PaddlePlugin)
+        .add_plugin(InputHandlerPlugin)
+        .add_plugin(GameStatePlugin)
         .add_plugin(RapierPhysicsPlugin::<NoUserData>::pixels_per_meter(100.0))
         .add_plugin(RapierDebugRenderPlugin::default())
         .run();
